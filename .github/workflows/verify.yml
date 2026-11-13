@@ -1,0 +1,22 @@
+# Foundry-managed CI: runs the SAME verification as the dashboard
+# (scripts/verify-stage.sh) on every PR. GitHub-hosted runners only.
+# Merge is human-only — a green run never merges anything.
+name: verify
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.example .env || true
+      - run: php artisan key:generate --force
+      - run: ./scripts/verify-stage.sh .

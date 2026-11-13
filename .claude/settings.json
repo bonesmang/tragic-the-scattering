@@ -1,0 +1,68 @@
+{
+  "_foundry": "Managed by Foundry (ClaudeSettingsService). Foundry rewrites this file when it drifts from the template, unless the project opts out — see the Foundry docs for the opt-out marker.",
+  "permissions": {
+    "allow": [
+      "Read(/home/bones/projects/tragic-the-scattering/**)",
+      "Write(/home/bones/projects/tragic-the-scattering/**)",
+      "Edit(/home/bones/projects/tragic-the-scattering/**)",
+      "Glob(/home/bones/projects/tragic-the-scattering/**)",
+      "Grep(/home/bones/projects/tragic-the-scattering/**)",
+      "Bash(composer *)",
+      "Bash(php artisan *)",
+      "Bash(php *)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(python3 *)",
+      "Bash(pip *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push origin main*)",
+      "Bash(gh pr merge*)",
+      "Bash(gh secret*)",
+      "Bash(npm publish*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Bash(*DROP DATABASE*)",
+      "Bash(*DROP TABLE*)",
+      "Bash(*TRUNCATE TABLE*)",
+      "Bash(mysql * -e *DROP*)",
+      "Bash(rm -rf ~*)",
+      "Bash(rm -rf / *)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(git remote*)",
+      "Bash(sudo *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(gh repo*)",
+      "Bash(gh release*)",
+      "WebFetch",
+      "WebSearch"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/verify-before-stop.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
